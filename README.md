@@ -17,6 +17,5 @@ goreleaser init
 
 ``
 go mod vendor
-
 goreleaser --snapshot --skip-publish --rm-dist
 ``
