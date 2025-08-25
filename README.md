@@ -1,9 +1,45 @@
+
+### s3fs-fuse
+
+```
+sudo yum install epel-release
+sudo yum install s3fs-fuse
+
+echo ACCESS_KEY_ID:SECRET_ACCESS_KEY > ${HOME}/.passwd-s3fs
+chmod 600 ${HOME}/.passwd-s3fs
+
+
+# 使用文本编辑器打开 hosts 文件
+sudo vi /etc/hosts
+
+# 在文件末尾添加以下格式的内容（示例）
+100.86.2.1:80  xinan1.zos.ctyun.cn
+100.86.2.1:80  Bucket.xinan1.zos.ctyun.cn
+
+# 刷新 DNS 缓存（CentOS 7/8）
+sudo systemctl restart NetworkManager
+
+# 验证解析
+ping xinan1.zos.ctyun.cn
+nslookup Bucket.xinan1.zos.ctyun.cn
+
+
+s3fs Bucket /s3fs/data -o passwd_file=~/.passwd-s3fs -o url=http://100.86.2.1  -o dbglevel=info -f -o curldbg
+s3fs Bucket /s3fs/data -o passwd_file=./.passwd-s3fs -o url=https://xinan1.zos.ctyun.cn  -o dbglevel=info -f -o curldbg
+
+umount /s3fs/data
+umount -l /s3fs/data
+```
+
+
 ### nfs
 
 ```
 go-nfs /home/gogs/ 8084
 s3nfsd serve --addr :8888
 ```
+
+
 
 ```
 
