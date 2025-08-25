@@ -53,6 +53,7 @@ s3fs mybucket /mnt/s3 -o passwd_file=~/.passwd-s3fs \
 # 减少同步写入开销
 s3fs mount /s3fs/data -o passwd_file=./.passwd-s3fs -o url=https://xinan1.zos.ctyun.cn 2>&1 | rotatelogs /s3fs/log/s3fs_%Y%m%d.log 10M
 
+s3fs mount /s3fs/data -o passwd_file=./.passwd-s3fs -o url=https://xinan1.zos.ctyun.cn 2>&1 |  tee -a "log/task_$(date +\%Y\%m\%d).log" && find ./log/ -name '*.log' -type f -mtime +6 -exec rm -f {} \;
 
 一、生产环境推荐
 
