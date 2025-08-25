@@ -24,8 +24,8 @@ ping xinan1.zos.ctyun.cn
 nslookup mount.xinan1.zos.ctyun.cn
 
 
-s3fs mount /s3fs/data -o passwd_file=~/.passwd-s3fs -o url=http://100.86.2.1  -o dbglevel=info -f -o curldbg
-s3fs mount /s3fs/data -o passwd_file=./.passwd-s3fs -o url=https://xinan1.zos.ctyun.cn  -o dbglevel=info -f -o curldbg
+s3fs mount /s3fs/data -o passwd_file=~/.passwd-s3fs -o url=http://100.86.2.1  -o dbglevel=info -f # -o curldbg
+s3fs mount /s3fs/data -o passwd_file=./.passwd-s3fs -o url=https://xinan1.zos.ctyun.cn  -o dbglevel=info -f  #  -o curldbg
 
 umount /s3fs/data
 umount -l /s3fs/data
